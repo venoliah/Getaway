@@ -19,7 +19,7 @@ Getaway is a mobile app that simplifies the process of saving for vacations, pro
 ## Installation Guide
 To start saving for your dream vacation with Getaway:
 
-1. Download the app from [Google Play](link_to_google_play) or [Apple App Store](link_to_app_store).
+1. Download the app from [Google Play](link_to_google_play).
 2. Create an account and set up your first vacation fund.
 3. Invite your friends and family to join your savings journey.
 
