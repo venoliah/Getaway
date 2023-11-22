@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "452753767917",
+    "project_id": "getaway-71030",
+    "storage_bucket": "getaway-71030.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452753767917:android:111faec1825d778b597be4",
+        "android_client_info": {
+          "package_name": "com.example.getaway"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaTbBnsSPbLRAF7nNKSyWhPtZHVAV87IE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
