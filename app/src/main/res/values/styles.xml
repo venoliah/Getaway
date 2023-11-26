@@ -1,0 +1,15 @@
+<resources>
+    <!-- Add your existing styles here -->
+    <color name="colorBottomNavigationTextSelected">#FFEB3B</color>
+    <color name="colorBottomNavigationTextNotSelected">#DF1111</color>
+    <color name="colorBottomNavigationIconNotSelected">#673AB7</color>
+
+    <style name="BottomNavigationView.Active" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/colorBottomNavigationTextSelected</item>
+    </style>
+
+    <style name="BottomNavigationView.Inactive" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/colorBottomNavigationTextNotSelected</item>
+    </style>
+
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+    <string-array name="group_types">
+        <item>Family Vacation</item>
+        <item>Romantic Getaway</item>
+        <item>Honeymoon Getaway</item>
+        <item>Friends Trip</item>
+        <item>Other</item>
+    </string-array>
+</resources>

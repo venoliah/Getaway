@@ -1,0 +1,16 @@
+<!-- res/menu/bottom_nav_menu.xml -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_goals"
+        android:title="Goals"/>
+    <item
+        android:id="@+id/navigation_activity"
+        android:title="Activity"/>
+    <item
+        android:id="@+id/navigation_members"
+        android:title="Members"/>
+    <item
+        android:id="@+id/navigation_contribution"
+        android:title="Contribution"/>
+</menu>
