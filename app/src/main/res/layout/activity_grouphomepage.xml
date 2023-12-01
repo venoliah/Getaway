@@ -4,25 +4,41 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- FrameLayout for fragments -->
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/nav_view" />
+        android:layout_marginTop="80dp"
+        android:layout_below="@+id/groupNameTextView" />
 
+    <!-- BottomNavigationView aligned to the top, below groupNameTextView -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/groupNameTextView"
         android:background="?android:attr/windowBackground"
-        app:itemTextColor="@color/colorBottomNavigationTextNotSelected"
-        app:itemIconTint="@color/colorBottomNavigationTextNotSelected"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
         app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
         app:itemTextAppearanceInactive="@style/BottomNavigationView.Inactive"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
-
+    <!-- TextView at the top -->
+    <TextView
+        android:id="@+id/groupNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="22sp"
+        android:textColor="@color/purple_200"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:visibility="visible" />
 
 </RelativeLayout>
+
+

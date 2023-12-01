@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".LaunchActivity">
 
     <Button
@@ -10,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Register"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="160dp"
         android:layout_centerHorizontal="true"
         android:onClick="onRegisterClick" />
 
@@ -20,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:layout_below="@id/buttonRegister"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="22dp"
         android:layout_centerHorizontal="true"
         android:onClick="onLoginClick" />
 
@@ -30,7 +31,7 @@
         android:layout_height="wrap_content"
         android:text="Exit"
         android:layout_below="@id/buttonLogin"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="22dp"
         android:layout_centerHorizontal="true"
         android:onClick="onExitClick" />
 
