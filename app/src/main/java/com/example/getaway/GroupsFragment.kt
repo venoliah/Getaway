@@ -1,5 +1,6 @@
 package com.example.getaway
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,10 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import android.util.Log
+import android.widget.TextView
 
 // UserGroups.kt
 data class UserGroups(
-    val groups: List<Group>
+    val groupName: List<String> // Updated field name to match Firestore document
 )
 
 // Group.kt
@@ -45,10 +47,10 @@ class GroupsFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = groupAdapter
 
-        // Set up button click listener
         addButton.setOnClickListener {
             // Handle click on the add button (e.g., navigate to NewGroupActivity)
-            // You can add your logic here
+            val intent = Intent(requireContext(), NewGroupActivity::class.java)
+            startActivity(intent)
         }
 
         // Load user's groups from Firestore
@@ -59,21 +61,23 @@ class GroupsFragment : Fragment() {
 
     private fun loadUserGroups() {
         // TODO: Implement Firestore query to get user's groups
-        // You may use Firebase Firestore to perform the query
-
-        // Example (assuming you have a FirebaseUser object)
         val user = FirebaseAuth.getInstance().currentUser
+
         user?.let {
             val userId = user.uid
-            val myGroupsRef = FirebaseFirestore.getInstance().collection("my_groups").document(userId)
+            val myGroupsRef = FirebaseFirestore.getInstance().collection("groups").document(userId)
 
             myGroupsRef.get()
                 .addOnSuccessListener { documentSnapshot ->
                     if (documentSnapshot.exists()) {
-                        val groups = documentSnapshot.toObject(UserGroups::class.java)
-                        groups?.let {
-                            // Update the RecyclerView with the list of groups
-                            groupAdapter.setGroups(groups.groups)
+                        // Retrieve the "groupName" field from the document
+                        val groupName = documentSnapshot.get("groupName") as? List<String>
+
+                        groupName?.let {
+                            // Update the RecyclerView with the list of group names
+                            groupAdapter.setGroupNames(groupName)
+                            // Log for debugging
+                            Log.d("GroupsFragment", "Retrieved group names: $groupName")
                         }
                     }
                 }
@@ -83,39 +87,38 @@ class GroupsFragment : Fragment() {
                 }
         }
     }
-}
 
 // GroupAdapter.kt
 class GroupAdapter : RecyclerView.Adapter<GroupAdapter.GroupViewHolder>() {
+    private var groupName: List<String> = emptyList()
 
-    private var groups: List<Group> = emptyList()
-
-    fun setGroups(groups: List<Group>) {
-        this.groups = groups
+    fun setGroupNames(groupName: List<String>) {
+        this.groupName = groupName
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_group, parent, false)
+        Log.d("GroupAdapter", "onCreateViewHolder called")
         return GroupViewHolder(view)
     }
-
     override fun onBindViewHolder(holder: GroupViewHolder, position: Int) {
-        val group = groups[position]
-        holder.bind(group)
+        val groupName = groupName[position]
+        holder.bind(groupName)
+        Log.d("GroupAdapter", "onBindViewHolder called for position: $position")
     }
-
     override fun getItemCount(): Int {
-        return groups.size
+        return groupName.size
     }
 
     class GroupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // TODO: Implement ViewHolder binding logic
-        // You can set text, click listeners, etc., for the item view
-        fun bind(group: Group) {
-            // Example:
-            // itemView.findViewById<TextView>(R.id.textViewGroupName).text = group.name
-            // itemView.setOnClickListener { /* Handle item click */ }
+        private val groupNameTextView: TextView = itemView.findViewById(R.id.textViewGroupName)
+        fun bind(groupName: String) {
+            groupNameTextView.text = groupName
+            // You can add click listeners or other logic here if needed
+            // Log for debugging
+            Log.d("GroupAdapter", "Binding group name: $groupName")
         }
     }
-}
+
+}}

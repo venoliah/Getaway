@@ -1,6 +1,7 @@
 package com.example.getaway
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -38,6 +39,15 @@ class GroupHomepageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_grouphomepage)
+
+        // Retrieve the group name from the Intent
+        val groupName = intent.getStringExtra("groupName")
+
+        // Find the TextView by ID
+        val groupNameTextView = findViewById<TextView>(R.id.groupNameTextView)
+
+        // Set the group name in the TextView
+        groupNameTextView.text = groupName
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)

@@ -58,12 +58,17 @@ dependencies {
     implementation ("com.google.firebase:firebase-auth")
     implementation ("com.google.firebase:firebase-firestore")
     implementation ("com.google.firebase:firebase-auth-ktx")
+    implementation ("com.google.firebase:firebase-messaging:23.3.1")
+
 
     //Image glide library
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation ("com.squareup.okhttp3:okhttp:4.9.1")  // Use the latest version
+
+    implementation ("com.sun.mail:android-mail:1.6.2")
+
 
 
 }
