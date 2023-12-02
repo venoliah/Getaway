@@ -11,6 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.example.getaway.GroupsFragment
+
 
 class HomeFragment : Fragment() {
 
@@ -54,15 +56,27 @@ class HomeFragment : Fragment() {
 
         buttonMyGroups.setOnClickListener {
             // Handle My Groups button click
-            // Open MyGroupsActivity or perform desired action
+//            val fragmentManager = requireActivity().supportFragmentManager
+//            val transaction = fragmentManager.beginTransaction()
+//
+//            // Replace the current fragment with the GroupsFragment
+//            val groupsFragment = GroupsFragment()
+//            transaction.replace(R.id.fragmentContainer, groupsFragment)
+//            transaction.addToBackStack(null) // Optional: Add to back stack to enable back navigation
+//
+//            // Commit the transaction
+//            transaction.commit()
+
+            val intent = Intent(activity, GroupsActivity::class.java)
+            startActivity(intent)
         }
+
 
         buttonNewGroup.setOnClickListener {
             // Handle New Group button click
             val intent = Intent(activity, NewGroupActivity::class.java)
             startActivity(intent)
         }
-
         return view
     }
 

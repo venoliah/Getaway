@@ -33,7 +33,7 @@ class MembersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_members)
 
-        FirebaseApp.initializeApp(this)
+        //FirebaseApp.initializeApp(this)
         if (isUserAuthenticated()) {
         // Retrieve group information from intent
         groupName = intent.getStringExtra("groupName") ?: ""
@@ -120,6 +120,7 @@ class MembersActivity : AppCompatActivity() {
             sendEmailTasks.awaitAll()
         }
     }
+
     private fun isValidEmail(email: String): Boolean {
         val emailPattern = Patterns.EMAIL_ADDRESS
         return emailPattern.matcher(email).matches()
@@ -129,12 +130,21 @@ class MembersActivity : AppCompatActivity() {
 
 
         return MimeMessage(session).apply {
-            setFrom(InternetAddress("winfred.omondi@strathmore.edu"))
+            setFrom(InternetAddress("newiachibs@gmail.com"))
             // Add a null check before parsing the email address
             if (emailAddress != null) {
                 setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailAddress))
-                subject = "Invitation to Join $groupName Group"
-                setText("Hello,\n\nYou are invited to join the $groupName group. Click the link to join.")
+                subject = "Invitation from Getaway to Join $groupName Group"
+                var registrationLink = ""
+                setText("Hello,\n\nYou are invited to join the $groupName group and be part of an exciting adventurous community! \n" +
+                        "\n" +
+                        "Accept the invitation and join us by clicking here: $registrationLink. This link will lead you to the registration page, where you can become an official member and access exclusive benefits.\n" +
+                        "\n" +
+                        "If joining isn't the right fit for you at the moment, we completely understand. No pressure, we respect your decision.\n" +
+                        "\n" +
+                        "Looking forward to having you onboard,\n" +
+                        "\n" +
+                        "[$groupName]")
             }
         }
     }
@@ -149,8 +159,7 @@ class MembersActivity : AppCompatActivity() {
 
             // Log properties for debugging
             Log.d("EmailDebug", "Loaded properties: $properties")
-
-        }  catch (e: IOException) {
+        } catch (e: IOException) {
             Log.e("EmailDebug", "Error loading properties: ${e.message}")
             e.printStackTrace()
         }
@@ -178,7 +187,6 @@ class MembersActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 showToast("Group information saved successfully!")
                 // Continue with the next steps or navigate to the Group Homepage
-                startGroupHomepage()
             }
             .addOnFailureListener { e ->
                 showToast("Error saving group information: ${e.message}")

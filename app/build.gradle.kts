@@ -68,6 +68,9 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:4.9.1")  // Use the latest version
 
     implementation ("com.sun.mail:android-mail:1.6.2")
+    implementation ("com.sun.mail:android-activation:1.6.2")
+
+
 
 
 
