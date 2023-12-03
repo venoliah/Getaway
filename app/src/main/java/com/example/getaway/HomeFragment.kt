@@ -11,6 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.example.getaway.GroupsFragment
+
 
 class HomeFragment : Fragment() {
 
@@ -53,16 +55,17 @@ class HomeFragment : Fragment() {
         handler.postDelayed(changePictureRunnable, 5 * 1000)
 
         buttonMyGroups.setOnClickListener {
-            // Handle My Groups button click
-            // Open MyGroupsActivity or perform desired action
+
+            val intent = Intent(activity, GroupsActivity::class.java)
+            startActivity(intent)
         }
+
 
         buttonNewGroup.setOnClickListener {
             // Handle New Group button click
             val intent = Intent(activity, NewGroupActivity::class.java)
             startActivity(intent)
         }
-
         return view
     }
 

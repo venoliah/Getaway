@@ -81,6 +81,11 @@
             android:exported="true">
             <!-- No intent-filter for LoginActivity -->
         </activity>
+        <activity
+            android:name=".GroupsActivity"
+            android:exported="true">
+            <!-- No intent-filter for LoginActivity -->
+        </activity>
 
 
     </application>

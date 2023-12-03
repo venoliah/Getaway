@@ -74,7 +74,8 @@ class NewGroupActivity : AppCompatActivity() {
                     "members" to members,
                     "groupType" to groupType,
                     "groupGoal" to groupGoal,
-                    "amount" to amount
+                    "amount" to amount,
+                    "createdBy" to userId
                 )
 
                 db.collection("groups").add(groupData)
