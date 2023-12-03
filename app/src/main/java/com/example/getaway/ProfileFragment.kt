@@ -88,7 +88,7 @@ class ProfileFragment : Fragment() {
                 .set(profileData)
                 .addOnSuccessListener {
                     profileInfoTextView.text = "Email: ${user.email}\nName: $name\nBio: $bio"
-                    // Display a success message or perform additional actions
+                    profileInfoTextView.setTextColor(resources.getColor(android.R.color.holo_purple)) // Set text color to white
                 }
                 .addOnFailureListener { e ->
                     // Handle the failure
