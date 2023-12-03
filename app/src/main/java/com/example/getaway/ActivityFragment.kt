@@ -18,43 +18,43 @@ class ActivityFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_activity, container, false)
-
-        activityDetailsTextView = view.findViewById(R.id.activityDetailsTextView)
-
-        // Initialize Firestore
-        firestore = FirebaseFirestore.getInstance()
-
-        // Fetch and display payment details
-        fetchAndDisplayPaymentDetails()
+//        val view = inflater.inflate(R.layout.fragment_activity, container, false)
+//
+//        activityDetailsTextView = view.findViewById(R.id.activityDetailsTextView)
+//
+//        // Initialize Firestore
+//        firestore = FirebaseFirestore.getInstance()
+//
+//        // Fetch and display payment details
+//        fetchAndDisplayPaymentDetails()
 
         return view
     }
 
     private fun fetchAndDisplayPaymentDetails() {
         // Query the "payments" collection
-        firestore.collection("payments")
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                val activityDetails = StringBuilder()
-
-                for (document in querySnapshot) {
-                    // Get details from each document
-                    val phoneNumber = document.getString("phoneNumber")
-                    val amount = document.getString("amount")
-                    val timestamp = document.getTimestamp("timestamp")
-
-                    // Append details to the StringBuilder
-                    activityDetails.append("Phone Number: $phoneNumber\n")
-                    activityDetails.append("Amount: $$amount\n")
-                    activityDetails.append("Timestamp: $timestamp\n\n")
-                }
-
-                // Display details in the TextView
-                activityDetailsTextView.text = activityDetails.toString()
-            }
-            .addOnFailureListener { exception ->
-                Log.e("ActivityFragment", "Error fetching payment details", exception)
-            }
+//        firestore.collection("payments")
+//            .get()
+//            .addOnSuccessListener { querySnapshot ->
+//                val activityDetails = StringBuilder()
+//
+//                for (document in querySnapshot) {
+//                    // Get details from each document
+//                    val phoneNumber = document.getString("phoneNumber")
+//                    val amount = document.getString("amount")
+//                    //val timestamp = document.getTimestamp("timestamp")
+//
+//                    // Append details to the StringBuilder
+//                    activityDetails.append("Phone Number: $phoneNumber\n")
+//                    activityDetails.append("Amount: $$amount\n")
+//                   // activityDetails.append("Timestamp: $timestamp\n\n")
+//                }
+//
+//                // Display details in the TextView
+//                activityDetailsTextView.text = activityDetails.toString()
+//            }
+//            .addOnFailureListener { exception ->
+//                Log.e("ActivityFragment", "Error fetching payment details", exception)
+//            }
     }
 }
