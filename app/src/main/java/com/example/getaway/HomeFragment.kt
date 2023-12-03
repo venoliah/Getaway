@@ -87,3 +87,4 @@ class HomeFragment : Fragment() {
         handler.removeCallbacks(changePictureRunnable)
     }
 }
+//

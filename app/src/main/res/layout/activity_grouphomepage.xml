@@ -12,7 +12,7 @@
         android:layout_marginTop="80dp"
         android:layout_below="@+id/groupNameTextView" />
 
-    <!-- BottomNavigationView aligned to the top, below groupNameTextView -->
+    <!-- BottomNavigationView aligned to the top, below groupNameTextView  -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"

@@ -88,3 +88,4 @@ class GroupsFragment : Fragment(), GroupAdapter.OnItemClickListener  {
         startActivity(intent)
     }
 }
+//
