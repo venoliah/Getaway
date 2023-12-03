@@ -31,8 +31,8 @@ class ContributionFragment : Fragment() {
     private lateinit var amountEditText: EditText
     private lateinit var firestore: FirebaseFirestore
 
-    private val consumerKey = "m1YMZotp2Th9KvoZZA27qj8M1Fgj6JSI"
-    private val consumerSecret = "kA2lElqkff9vEGmf"
+    private val consumerKey = "k3hEKH3cjM4yaFxGiHUSnyd2oyDklT0S"
+    private val consumerSecret = "v2o8O4EaRCzgjBR0"
     private var accessToken: String? = null
 
     private val TAG = "ContributionFragment"
@@ -73,7 +73,7 @@ class ContributionFragment : Fragment() {
                                 "PartyB": 174379,
                                 "PhoneNumber": $phoneNumber,
                                 "CallBackURL": "https://mydomain.com/path",
-                                "AccountReference": "CompanyXLTD",
+                                "AccountReference": "Getaway",
                                 "TransactionDesc": "Payment of X" 
                              }
                         """.trimIndent()
@@ -106,7 +106,6 @@ class ContributionFragment : Fragment() {
         }
     }
 
-    // Rest of the methods remain unchanged...
 
     private fun generateAccessToken(completion: (Boolean) -> Unit) {
         val credentials = "$consumerKey:$consumerSecret"

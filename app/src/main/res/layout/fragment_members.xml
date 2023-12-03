@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MembersFragment">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/goalsTextView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="Members"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingBottom="8dp"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/contributionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="kennedyvenoliah2@gmail.com"
+        android:paddingBottom="16dp"/>
+    <TextView
+        android:id="@+id/contribution2TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Winfredomondi@gmail.com"
+        android:paddingBottom="16dp"/>
+
+    <Button
+        android:id="@+id/editGoalsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove member"
+        android:visibility="visible"/>
+
+    <EditText
+        android:id="@+id/editGoalsEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Add new memeber"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/saveGoalsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"/>
+
+</LinearLayout>
