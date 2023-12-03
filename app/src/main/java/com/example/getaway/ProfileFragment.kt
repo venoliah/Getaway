@@ -5,55 +5,94 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var profileInfoTextView: TextView
+    private lateinit var nameEditText: EditText
+    private lateinit var bioEditText: EditText
+    private lateinit var saveButton: Button
+
+    private val firebaseAuth = FirebaseAuth.getInstance()
+    private val firebaseFirestore = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        // Initialize views
+        profileInfoTextView = view.findViewById(R.id.profileInfoTextView)
+        nameEditText = view.findViewById(R.id.editTextName)
+        bioEditText = view.findViewById(R.id.editTextBio)
+        saveButton = view.findViewById(R.id.saveButton)
+
+        // Load and display user's email
+        val currentUser = firebaseAuth.currentUser
+        currentUser?.let { user ->
+            val userEmail = user.email
+            userEmail?.let {
+                profileInfoTextView.text = "Email: $it"
+            }
+        }
+
+        // Load and display existing profile information (if any)
+        loadProfileData()
+
+        // Set onClickListener for the Save button
+        saveButton.setOnClickListener {
+            saveProfileData()
+        }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun loadProfileData() {
+        val currentUser = firebaseAuth.currentUser
+        currentUser?.let { user ->
+            val userId = user.uid
+            firebaseFirestore.collection("profiles").document(userId)
+                .get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        val name = documentSnapshot.getString("name")
+                        val bio = documentSnapshot.getString("bio")
+
+                        nameEditText.setText(name)
+                        bioEditText.setText(bio)
+                    }
                 }
-            }
+        }
+    }
+
+    private fun saveProfileData() {
+        val currentUser = firebaseAuth.currentUser
+        currentUser?.let { user ->
+            val userId = user.uid
+            val name = nameEditText.text.toString().trim()
+            val bio = bioEditText.text.toString().trim()
+
+            val profileData = hashMapOf(
+                "name" to name,
+                "bio" to bio
+            )
+
+            firebaseFirestore.collection("profiles").document(userId)
+                .set(profileData)
+                .addOnSuccessListener {
+                    profileInfoTextView.text = "Email: ${user.email}\nName: $name\nBio: $bio"
+                    // Display a success message or perform additional actions
+                }
+                .addOnFailureListener { e ->
+                    // Handle the failure
+                }
+        }
     }
 }
