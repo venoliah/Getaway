@@ -16,6 +16,6 @@
         android:padding="8dp"
         android:text="Group Name"/>
 
-    <!-- Add other views as needed -->
+    <!-- Add other views as needed  -->
 
 </RelativeLayout>

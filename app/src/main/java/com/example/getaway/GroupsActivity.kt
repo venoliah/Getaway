@@ -66,3 +66,4 @@ class GroupsActivity : AppCompatActivity(), GroupAdapter.OnItemClickListener {
         startActivity(intent)
     }
 }
+//

@@ -30,3 +30,4 @@ class SplashScreen : AppCompatActivity() {
         }, 3000) // 3000 is the delayed time in milliseconds.
     }
 }
+//

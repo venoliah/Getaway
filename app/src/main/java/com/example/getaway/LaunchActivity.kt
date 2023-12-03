@@ -29,3 +29,4 @@ class LaunchActivity : AppCompatActivity() {
         finish() // This will close the activity and exit the app
     }
 }
+//

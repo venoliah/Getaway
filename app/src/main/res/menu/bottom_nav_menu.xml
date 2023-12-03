@@ -14,3 +14,4 @@
         android:id="@+id/navigation_contribution"
         android:title="Contribution"/>
 </menu>
+

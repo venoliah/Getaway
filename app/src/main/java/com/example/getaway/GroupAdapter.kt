@@ -21,6 +21,7 @@ class GroupAdapter(
         this.groups = groups
         notifyDataSetChanged()
     }
+    //
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_group, parent, false)
