@@ -55,17 +55,6 @@ class HomeFragment : Fragment() {
         handler.postDelayed(changePictureRunnable, 5 * 1000)
 
         buttonMyGroups.setOnClickListener {
-            // Handle My Groups button click
-//            val fragmentManager = requireActivity().supportFragmentManager
-//            val transaction = fragmentManager.beginTransaction()
-//
-//            // Replace the current fragment with the GroupsFragment
-//            val groupsFragment = GroupsFragment()
-//            transaction.replace(R.id.fragmentContainer, groupsFragment)
-//            transaction.addToBackStack(null) // Optional: Add to back stack to enable back navigation
-//
-//            // Commit the transaction
-//            transaction.commit()
 
             val intent = Intent(activity, GroupsActivity::class.java)
             startActivity(intent)

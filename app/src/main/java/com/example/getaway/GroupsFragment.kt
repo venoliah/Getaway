@@ -21,14 +21,11 @@ data class Group(
     val userId: String = ""
 )
 
-class GroupsFragment : Fragment() {
+class GroupsFragment : Fragment(), GroupAdapter.OnItemClickListener  {
 
     private lateinit var recyclerView: RecyclerView
-
     //private lateinit var addButton: Button
     private lateinit var groupAdapter: GroupAdapter
-
-    // ... (other declarations)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +36,8 @@ class GroupsFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerViewGroups)
         // addButton = view.findViewById(R.id.addButton)
 
-        // Initialize RecyclerView and adaapter
-        groupAdapter = GroupAdapter(requireContext())
+        // Initialize RecyclerView and adapter
+        groupAdapter = GroupAdapter(requireContext(),this)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = groupAdapter
 
@@ -84,5 +81,10 @@ class GroupsFragment : Fragment() {
                     ).show()
                 }
         }
+    }
+    override fun onItemClick(group: Group) {
+        val intent = Intent(requireContext(), GroupHomepageActivity::class.java)
+        intent.putExtra("groupName", group.groupName)
+        startActivity(intent)
     }
 }

@@ -1,5 +1,6 @@
 package com.example.getaway
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,8 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import android.util.Log
 import android.widget.Toast
 
-
-class GroupsActivity : AppCompatActivity() {
+class GroupsActivity : AppCompatActivity(), GroupAdapter.OnItemClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var groupAdapter: GroupAdapter
@@ -21,7 +21,7 @@ class GroupsActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recyclerViewGroups)
 
-        groupAdapter = GroupAdapter(this)
+        groupAdapter = GroupAdapter(this, this)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = groupAdapter
 
@@ -58,5 +58,11 @@ class GroupsActivity : AppCompatActivity() {
                     ).show()
                 }
         }
+    }
+
+    override fun onItemClick(group: Group) {
+        val intent = Intent(this, GroupHomepageActivity::class.java)
+        intent.putExtra("groupName", group.groupName)
+        startActivity(intent)
     }
 }

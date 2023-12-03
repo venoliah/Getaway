@@ -9,7 +9,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class GroupAdapter(private val context: Context) : RecyclerView.Adapter<GroupAdapter.GroupViewHolder>() {
+class GroupAdapter(
+    private val context: Context,
+    private val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<GroupAdapter.GroupViewHolder>() {
 
     private var groups: List<Group> = emptyList()
 
@@ -29,6 +31,10 @@ class GroupAdapter(private val context: Context) : RecyclerView.Adapter<GroupAda
         val group = groups[position]
         holder.bind(group)
        // showToast("Binding group name at position $position: $group")
+        // Set click listener on the item view
+        holder.itemView.setOnClickListener {
+            itemClickListener.onItemClick(group)
+        }
     }
 
     private fun showToast(message: String) {
@@ -47,5 +53,7 @@ class GroupAdapter(private val context: Context) : RecyclerView.Adapter<GroupAda
             // Add click listeners or other logic if needed
         }
     }
+    interface OnItemClickListener {
+        fun onItemClick(group: Group)
+    }
 }
-
